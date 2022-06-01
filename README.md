@@ -1,5 +1,7 @@
 # Base Rails
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#<your-project-url>)
+
 ## Standard Workflow
 
  1. Start the web server by running `bin/server`.
