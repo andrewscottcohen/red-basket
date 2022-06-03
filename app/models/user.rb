@@ -19,4 +19,6 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :bookmarks
+
+  belongs_to :department
 end

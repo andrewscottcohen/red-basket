@@ -82,6 +82,19 @@ class UserAuthenticationController < ApplicationController
     end
   end
 
+  def update_dept
+    @user = @current_user
+    @user.department_id = params.fetch("query_department_id")
+
+    if @user.valid?
+      @user.save
+
+      redirect_to("/bookmarks", { :notice => "User account updated successfully."})
+    else
+      render({ :template => "user_authentication/edit_profile_with_errors.html.erb" , :alert => @user.errors.full_messages.to_sentence })
+    end
+  end
+
   def destroy
     @current_user.destroy
     reset_session

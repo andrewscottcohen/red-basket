@@ -11,4 +11,6 @@ class Department < ApplicationRecord
   belongs_to :user, :required => true
   belongs_to :speaker, :required => true
 
+  has_many :users
+
 end

@@ -3,6 +3,35 @@
     <h1>
       <%= @current_user.first_name %>'s bookmarks
     </h1>
+
+    <% if @current_user.department == nil%>
+      <h6 class="text-muted">
+        Department: Undecided
+      </h6>
+
+      <form action="/modify_user_dept" method="post" class="form-inline">
+      <div class="form-group">
+
+        <select name="query_department_id" class="form-control form-control-sm">
+          <% Department.all.order(:title).each do |a_dept| %>
+          <option value="<%= a_dept.id %>">
+            <%= a_dept.title %>
+          </option>
+          <% end %>
+        </select>
+      </div>
+      <div>
+          <br>
+          <button type="submit">
+            <h6>Update Department</h6>
+          </button>
+        </div>
+      </form>
+    <% else %>
+      <h6 class="text-muted">
+        Department of <%= @current_user.department.title %>
+      </h6>
+    <% end %>
   </div>
 </div>
 
@@ -41,11 +70,15 @@
         </th>
 
         <th>
+          Date
+        </th>
+
+        <th>
           Location
         </th>
 
         <th>
-          Created
+          Bookmarked
         </th>
 
         <th>
@@ -57,6 +90,10 @@
 
         <td>
           <%= a_bookmark.event.title %>
+        </td>
+
+        <td>
+          <%= a_bookmark.event.date %>
         </td>
 
 
