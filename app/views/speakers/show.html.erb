@@ -1,13 +1,19 @@
 <div>
   <div>
     <h1>
-      Speaker #<%= @the_speaker.id %> details
+      <%= @the_speaker.first_name %> <%= @the_speaker.last_name %>
     </h1>
 
     <div>
       <div>
-        <a href="/speakers">
+        <a href="/events">
           Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/speakers">
+          All speakers
         </a>
       </div>
 
@@ -19,12 +25,7 @@
     </div>
 
     <dl>
-      <dt>
-        Image
-      </dt>
-      <dd>
-        <%= @the_speaker.image %>
-      </dd>
+
 
       <dt>
         Bio
@@ -34,31 +35,22 @@
       </dd>
 
       <dt>
-        First name
-      </dt>
-      <dd>
-        <%= @the_speaker.first_name %>
-      </dd>
-
-      <dt>
-        Last name
-      </dt>
-      <dd>
-        <%= @the_speaker.last_name %>
-      </dd>
-
-      <dt>
         Event
       </dt>
+       <% speaker_events = Event.where({ :speaker_id => @the_speaker.id  }) %>
+       <% speaker_events.each do |an_event|%>
       <dd>
-        <%= @the_speaker.event_id %>
+        <ul>
+          <li><%= an_event.title %></li>
+        </ul>
       </dd>
+      <% end %>
 
       <dt>
         Department
       </dt>
       <dd>
-        <%= @the_speaker.department_id %>
+        <%= @the_speaker.department.title %>
       </dd>
 
       <dt>
@@ -66,13 +58,6 @@
       </dt>
       <dd>
         <%= time_ago_in_words(@the_speaker.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_speaker.updated_at) %> ago
       </dd>
     </dl>
   </div>
@@ -88,22 +73,6 @@
     </h2>
 
     <form action="/modify_speaker/<%= @the_speaker.id %>"  method="post" >
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image" value="<%= @the_speaker.image %>">
-      </div>
-
-      <div>
-        <label for="bio_box">
-          Bio
-        </label>
-
-        <textarea id="bio_box" name="query_bio"><%= @the_speaker.bio %></textarea>
-      </div>
-
       <div>
         <label for="first_name_box">
           First name
@@ -121,11 +90,11 @@
       </div>
 
       <div>
-        <label for="event_id_box">
-          Event
+        <label for="bio_box">
+          Bio
         </label>
 
-        <input type="text" id="event_id_box" name="query_event_id" value="<%= @the_speaker.event_id %>">
+        <textarea id="bio_box" name="query_bio"><%= @the_speaker.bio %></textarea>
       </div>
 
       <div>
@@ -133,7 +102,7 @@
           Department
         </label>
 
-        <input type="text" id="department_id_box" name="query_department_id" value="<%= @the_speaker.department_id %>">
+        <input type="text" id="department_id_box" name="query_department_id" value="<%= @the_speaker.department.title %>">
       </div>
 
       <button>

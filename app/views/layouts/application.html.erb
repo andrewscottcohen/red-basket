@@ -55,34 +55,6 @@
       </div>
 
       <body>
-    <nav>
-      <ul>
-        <% if session[:user_id].present? %>
-          <li>
-              <a href="/user_sign_out">Sign Out</a>
-          </li>
-          <li>
-              <a href="/bookmarks">My bookmarks</a>
-          </li>
-        <% else %>
-          <li>
-            <a href="/user_sign_in">
-              Sign in
-            </a>
-          </li>
-          <li>
-            <a href="/user_sign_up">
-              Sign up
-            </a>
-          </li>
-        <% end %>
-        <li>
-          <a href="/">
-            Home
-          </a>
-        </li>
-      </ul>
-    </nav>
 
 <% if notice.present? %>
   <div class="alert alert-success" role="alert">

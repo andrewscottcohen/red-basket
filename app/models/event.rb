@@ -14,9 +14,9 @@
 #  venue_id      :integer
 #
 class Event < ApplicationRecord
-  belongs_to :speaker, :required => true
-  belongs_to :venue, :required => true
-  belongs_to :department, :required => true
+  belongs_to :speaker
+  belongs_to :venue
+  belongs_to :department
 
   has_many :bookmarks
 end

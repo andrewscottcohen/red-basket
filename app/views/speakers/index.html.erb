@@ -15,21 +15,6 @@
     </h2>
 
     <form action="/insert_speaker" method="post">
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <div>
-        <label for="bio_box">
-          Bio
-        </label>
-
-        <textarea id="bio_box" name="query_bio" rows="3"></textarea>
-      </div>
 
       <div>
         <label for="first_name_box">
@@ -48,19 +33,24 @@
       </div>
 
       <div>
-        <label for="event_id_box">
-          Event
+        <label for="bio_box">
+          Bio
         </label>
 
-        <input type="text" id="event_id_box" name="query_event_id">
+        <textarea id="bio_box" name="query_bio" rows="3"></textarea>
       </div>
 
       <div>
-        <label for="department_id_box">
+      <label for="department_id_box">
           Department
-        </label>
-
-        <input type="text" id="department_id_box" name="query_department_id">
+      </label>
+      <select name="query_department_id">
+        <% Department.all.order(:title).each do |a_dept| %>
+        <option value="<%= a_dept.id %>">
+          <%= a_dept.title %>
+        </option>
+        <% end %>
+      </select>
       </div>
 
       <button>
@@ -75,17 +65,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Bio
-        </th>
 
         <th>
           First name
@@ -96,7 +75,7 @@
         </th>
 
         <th>
-          Event
+          Bio
         </th>
 
         <th>
@@ -108,26 +87,11 @@
         </th>
 
         <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_speakers.each do |a_speaker| %>
       <tr>
-        <td>
-          <%= a_speaker.id %>
-        </td>
-
-        <td>
-          <%= a_speaker.image %>
-        </td>
-
-        <td>
-          <%= a_speaker.bio %>
-        </td>
 
         <td>
           <%= a_speaker.first_name %>
@@ -138,18 +102,15 @@
         </td>
 
         <td>
-          <%= a_speaker.event_id %>
+          <%= a_speaker.bio %>
         </td>
 
         <td>
-          <%= a_speaker.department_id %>
+          <%= a_speaker.department.title %>
         </td>
 
         <td>
           <%= time_ago_in_words(a_speaker.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_speaker.updated_at) %> ago
         </td>
 
         <td>

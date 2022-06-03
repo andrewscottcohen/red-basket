@@ -41,7 +41,7 @@
         Speaker
       </dt>
       <dd>
-        <%= @the_event.speaker.first_name + " " + @the_event.speaker.last_name%>
+        <a href="/speakers/<%= @the_event.speaker.id %>"><%= @the_event.speaker.first_name + " " + @the_event.speaker.last_name%></a>
       </dd>
 
       <dt>

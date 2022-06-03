@@ -19,11 +19,9 @@ class SpeakersController < ApplicationController
 
   def create
     the_speaker = Speaker.new
-    the_speaker.image = params.fetch("query_image")
     the_speaker.bio = params.fetch("query_bio")
     the_speaker.first_name = params.fetch("query_first_name")
     the_speaker.last_name = params.fetch("query_last_name")
-    the_speaker.event_id = params.fetch("query_event_id")
     the_speaker.department_id = params.fetch("query_department_id")
 
     if the_speaker.valid?

@@ -112,6 +112,13 @@
       <form action="/insert_event" method="post" class="form-inline">
 
         <div>
+
+      <div>
+      <h4>
+        Event Details
+      </h4>
+      </div>
+
         <div class="form-group">
           <label for="title_box">
             <strong>Name of Event</strong>
@@ -122,27 +129,20 @@
 
 
         <div class="form-group">
-          <label for="speaker_id_box">
-            <strong>Speaker</strong>
+          <label for="date_box">
+            <strong>Date of Event</strong>
           </label>
 
-          <input class="form-control form-control-sm" type="text" id="speaker_id_box" name="query_speaker_id">
+          <input class="form-control form-control-sm" type="text" id="date_box" name="query_event_date" placeholder="YYYY-MM-DD">
         </div>
 
-        <div class="form-group">
-          <label for="department_id_box">
-            <strong>Department</strong>
-          </label>
-
-          <input class="form-control form-control-sm" type="text" id="department_id_box" name="query_department_id">
-        </div>
 
         <div class="form-group">
-          <label for="venue_id_box">
+          <label for="venue_title_box">
             <strong>Venue</strong>
           </label>
 
-          <input class="form-control form-control-sm" type="text" id="venue_id_box" name="query_venue_id">
+          <input class="form-control form-control-sm" type="text" id="venue_title_box" name="query_venue">
         </div>
 
         <div class="form-group">
@@ -150,7 +150,7 @@
             <strong>Address</strong>
           </label>
 
-          <input class="form-control form-control-sm" type="text" id="venue_address_id_box" name="query_venue_address_id">
+          <input class="form-control form-control-sm" type="text" id="venue_address_id_box" name="query_address">
         </div>
 
         <div class="form-group">
@@ -161,6 +161,53 @@
           <input class="form-control form-control-sm" type="text" id="zoom_url_box" name="query_zoom_url">
         </div>
         </div>
+
+        <br>
+
+    <div>
+      <div>
+      <h4>
+        Speaker Details
+      </h4>
+      </div>
+
+      <div class="form-group">
+        <label for="first_name_box">
+          <strong>First name</strong>
+        </label>
+
+        <input type="text" id="first_name_box" name="query_first_name" class="form-control form-control-sm">
+      </div>
+
+      <div class="form-group">
+        <label for="last_name_box">
+          <strong>Last name</strong>
+        </label>
+
+        <input type="text" id="last_name_box" name="query_last_name" class="form-control form-control-sm">
+      </div>
+
+      <div class="form-group">
+        <label for="bio_box">
+          <strong>Bio</strong>
+        </label>
+
+        <textarea id="bio_box" name="query_bio" rows="3" class="form-control form-control-sm"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="department_id_box">
+            <strong>Department</strong>
+        </label>
+        <select name="query_department_id" class="form-control form-control-sm">
+          <% Department.all.order(:title).each do |a_dept| %>
+          <option value="<%= a_dept.id %>">
+            <%= a_dept.title %>
+          </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
 
         <div>
           <br>

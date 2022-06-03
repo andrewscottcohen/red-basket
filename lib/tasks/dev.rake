@@ -29,6 +29,7 @@ end
   user.bio = Faker::Movies::PrincessBride.quote
   user.department_id = departments.sample.id
   user.image = photos.sample
+  user.email = Faker::Internet.email
   user.password = "password"
   user.save
 end
@@ -46,6 +47,8 @@ end
   # speaker.event_id = events.sample.id
   speaker.save
 end
+
+  p "Added #{Speaker.count} Speakers"
 
   users = User.all
   speakers = Speaker.all
@@ -65,5 +68,5 @@ end
 
   p "Added #{Event.count} Events"
 
-  events = Event.all 
+  events = Event.all
 end
