@@ -1,0 +1,91 @@
+<div>
+  <div>
+    <h1>
+      <%= @current_user.first_name %>'s bookmarks
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new bookmark
+    </h2>
+
+      <form action="/insert_bookmark" method="post">
+        <select name="query_event_id">
+          <% Event.all.order(:title).each do |a_event| %>
+          <option value="<%= a_event.id %>">
+            <%= a_event.title %>
+          </option>
+          <% end %>
+        </select>
+
+      <button>
+        Bookmark Event
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1" class="table table-hover">
+      <tr>
+
+        <th>
+          Event
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Created
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_bookmarks.each do |a_bookmark| %>
+      <tr>
+
+        <td>
+          <%= a_bookmark.event.title %>
+        </td>
+
+
+      <% if a_bookmark.event.zoom_url.present?%>
+        <td>
+          <a href=<%= a_bookmark.event.zoom_url %> target="_blank" rel="noopener noreferrer" role="button" class="btn btn-primary btn-small" >Enter Event</a>
+        </td>
+      <% else %>
+        <td>
+          <a href="/venues/<%= a_bookmark.event.venue.id %>" role="button" class="btn btn-info btn-small">
+            <%= a_bookmark.event.venue.venue %>
+          </a>
+        </td>
+      <% end %>
+
+
+        <td>
+          <%= time_ago_in_words(a_bookmark.created_at) %> ago
+        </td>
+
+        <td>
+          <a href="/events/<%= a_bookmark.event.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

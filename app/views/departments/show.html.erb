@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Department #<%= @the_department.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/departments">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_department/<%= @the_department.id %>">
+          Delete department
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_department.title %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_department.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_department.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit department
+    </h2>
+
+    <form action="/modify_department/<%= @the_department.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_department.title %>">
+      </div>
+
+      <button>
+        Update department
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

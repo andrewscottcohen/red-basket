@@ -1,0 +1,71 @@
+<div>
+  <div>
+
+    <div>
+      <div>
+        <a href="/events">
+          Go back
+        </a>
+      </div>
+
+      </div>
+    </div>
+
+    <h1>
+      <%= @the_venue.venue %> details
+    </h1>
+
+    <dl>
+
+      <dt>
+        Address
+      </dt>
+      <dd>
+        <a href= "https://maps.google.com/?q=<%= @the_venue.address %>" target="_blank" rel="noopener noreferrer"><%= @the_venue.address %></a>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_venue.created_at) %> ago
+      </dd>
+
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit venue
+    </h2>
+
+    <form action="/modify_venue/<%= @the_venue.id %>"  method="post" >
+      <div>
+        <label for="venue_box">
+          Venue
+        </label>
+
+        <input type="text" id="venue_box" name="query_venue" value="<%= @the_venue.venue %>">
+      </div>
+
+      <div>
+        <label for="address_box">
+          Address
+        </label>
+
+        <input type="text" id="address_box" name="query_address" value="<%= @the_venue.address %>">
+      </div>
+
+      <button>
+        Update venue
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

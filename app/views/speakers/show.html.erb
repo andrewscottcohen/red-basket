@@ -1,0 +1,146 @@
+<div>
+  <div>
+    <h1>
+      Speaker #<%= @the_speaker.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/speakers">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_speaker/<%= @the_speaker.id %>">
+          Delete speaker
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_speaker.image %>
+      </dd>
+
+      <dt>
+        Bio
+      </dt>
+      <dd>
+        <%= @the_speaker.bio %>
+      </dd>
+
+      <dt>
+        First name
+      </dt>
+      <dd>
+        <%= @the_speaker.first_name %>
+      </dd>
+
+      <dt>
+        Last name
+      </dt>
+      <dd>
+        <%= @the_speaker.last_name %>
+      </dd>
+
+      <dt>
+        Event
+      </dt>
+      <dd>
+        <%= @the_speaker.event_id %>
+      </dd>
+
+      <dt>
+        Department
+      </dt>
+      <dd>
+        <%= @the_speaker.department_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_speaker.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_speaker.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit speaker
+    </h2>
+
+    <form action="/modify_speaker/<%= @the_speaker.id %>"  method="post" >
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_speaker.image %>">
+      </div>
+
+      <div>
+        <label for="bio_box">
+          Bio
+        </label>
+
+        <textarea id="bio_box" name="query_bio"><%= @the_speaker.bio %></textarea>
+      </div>
+
+      <div>
+        <label for="first_name_box">
+          First name
+        </label>
+
+        <input type="text" id="first_name_box" name="query_first_name" value="<%= @the_speaker.first_name %>">
+      </div>
+
+      <div>
+        <label for="last_name_box">
+          Last name
+        </label>
+
+        <input type="text" id="last_name_box" name="query_last_name" value="<%= @the_speaker.last_name %>">
+      </div>
+
+      <div>
+        <label for="event_id_box">
+          Event
+        </label>
+
+        <input type="text" id="event_id_box" name="query_event_id" value="<%= @the_speaker.event_id %>">
+      </div>
+
+      <div>
+        <label for="department_id_box">
+          Department
+        </label>
+
+        <input type="text" id="department_id_box" name="query_department_id" value="<%= @the_speaker.department_id %>">
+      </div>
+
+      <button>
+        Update speaker
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

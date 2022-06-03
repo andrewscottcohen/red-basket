@@ -1,0 +1,137 @@
+<div>
+  <div>
+    <h1>
+      <%= @the_event.title %> details
+    </h1>
+
+    <% if @current_user != nil %>
+        <% current_user_bookmarks = Bookmark.where({ :event_id => @the_event.id, :user_id => session.fetch(:user_id)})%>
+        <% the_bookmark = current_user_bookmarks.at(0) %>
+
+        <% if the_bookmark == nil %>
+          <form action="/insert_bookmark" method="post">
+            <input type="hidden" name="query_event_id" value="<%= @the_event.id %>">
+
+            <button>Bookmark this event!</button>
+
+        <% else %>
+          <a href="/delete_bookmark/<%=the_bookmark.id%>"><button>Un-bookmark</button></a>
+        <% end %>
+    <% end %>
+
+    <div>
+      <div>
+        <a href="/events">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_event/<%= @the_event.id %>">
+          Delete event
+        </a>
+      </div>
+    </div>
+
+    <br>
+
+    <dl>
+
+      <dt>
+        Speaker
+      </dt>
+      <dd>
+        <%= @the_event.speaker.first_name + " " + @the_event.speaker.last_name%>
+      </dd>
+
+      <dt>
+        Department
+      </dt>
+      <dd>
+        <%= @the_event.department.title %>
+      </dd>
+
+      <dt>
+        Venue
+      </dt>
+      <dd>
+        <%= @the_event.venue.venue %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_event.created_at) %> ago
+      </dd>
+
+      <dt>
+        Video Link
+      </dt>
+      <dd>
+          <a href=<%= @the_event.zoom_url %> target="_blank" rel="noopener noreferrer" role="button" class="btn btn-primary btn-small" >Enter Event</a>
+      </dd>
+
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit event
+    </h2>
+
+    <form action="/modify_event/<%= @the_event.id %>"  method="post" >
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_event.title %>">
+      </div>
+
+      <div>
+        <label for="speaker_id_box">
+          Speaker
+        </label>
+
+        <input type="text" id="speaker_id_box" name="query_speaker_id" value="<%= @the_event.speaker.first_name + " " + @the_event.speaker.last_name %>">
+      </div>
+
+      <div>
+        <label for="department_id_box">
+          Department
+        </label>
+
+        <input type="text" id="department_id_box" name="query_department_id" value="<%= @the_event.department.title %>">
+      </div>
+      
+      <div>
+        <label for="venue_id_box">
+          Venue
+        </label>
+
+        <input type="text" id="venue_id_box" name="query_venue_id" value="<%= @the_event.venue.venue %>">
+      </div>
+
+      <div>
+        <label for="zoom_url_box">
+          Video Link
+        </label>
+
+        <input type="text" id="zoom_url_box" name="query_zoom_url" value="<%= @the_event.zoom_url %>">
+      </div>
+
+      <button>
+        Update event
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

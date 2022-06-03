@@ -1,0 +1,174 @@
+<div>
+  <div>
+    <h1>
+      List of all events
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <a href="#scroll-target" class="btn btn-outline-secondary" style="margin-left: 2px;">
+      <h5>
+        Add a new event
+      </h5>
+    </a>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1" class="table table-hover">
+      <tr>
+
+        <th><strong>
+          Title
+        </strong></th>
+
+        <th><strong>
+          Speaker
+        </strong></th>
+
+        <th><strong>
+          Date
+        </strong></th>
+
+        <th><strong>
+          Departments
+        </strong></th>
+
+        <th><strong>
+          Location
+        </strong></th>
+
+        <th><strong>
+          Created
+        </strong></th>
+
+        <th>
+
+        </th>
+
+      </tr>
+
+      <% @list_of_events.each do |an_event| %>
+      <tr>
+
+        <td>
+          <%= an_event.title %>
+        </td>
+
+        <td>
+          <%= an_event.speaker.first_name + " " + an_event.speaker.last_name %>
+        </td>
+
+        <td>
+          <%= an_event.date %>
+        </td>
+
+        <td>
+          <%= an_event.speaker.department.title %>
+        </td>
+
+      <% if an_event.zoom_url.present?%>
+        <td>
+          <a href=<%= an_event.zoom_url %> target="_blank" rel="noopener noreferrer" role="button" class="btn btn-primary btn-small" >Enter Event</a>
+        </td>
+      <% else %>
+        <td>
+          <a href="/venues/<%= an_event.venue.id %>" role="button" class="btn btn-info btn-small">
+            <%= an_event.venue.venue %>
+          </a>
+        </td>
+      <% end %>
+
+        <td>
+          <%= time_ago_in_words(an_event.created_at) %> ago
+        </td>
+
+        <td>
+          <a href="/events/<%= an_event.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+
+    <div id="scroll-target">
+
+      <p class="text-muted">
+      If the event is virtual, enter in the appropriate link in the "Video Link" input box - otherwise leave the input blank and fill in "Venue" and "Address"
+      </p>
+
+      <form action="/insert_event" method="post" class="form-inline">
+
+        <div>
+        <div class="form-group">
+          <label for="title_box">
+            <strong>Name of Event</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="title_box" name="query_title">
+        </div>
+
+
+        <div class="form-group">
+          <label for="speaker_id_box">
+            <strong>Speaker</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="speaker_id_box" name="query_speaker_id">
+        </div>
+
+        <div class="form-group">
+          <label for="department_id_box">
+            <strong>Department</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="department_id_box" name="query_department_id">
+        </div>
+
+        <div class="form-group">
+          <label for="venue_id_box">
+            <strong>Venue</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="venue_id_box" name="query_venue_id">
+        </div>
+
+        <div class="form-group">
+          <label for="venue_address_id_box">
+            <strong>Address</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="venue_address_id_box" name="query_venue_address_id">
+        </div>
+
+        <div class="form-group">
+          <label for="zoom_url_box">
+            <strong>Video Link</strong>
+          </label>
+
+          <input class="form-control form-control-sm" type="text" id="zoom_url_box" name="query_zoom_url">
+        </div>
+        </div>
+
+        <div>
+          <br>
+          <button type="submit" class="btn btn-primary">
+            Create event
+          </button>
+        </div>
+      </form>
+    </div>
+
+<hr>
