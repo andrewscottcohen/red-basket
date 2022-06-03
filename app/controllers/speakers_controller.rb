@@ -36,11 +36,9 @@ class SpeakersController < ApplicationController
     the_id = params.fetch("path_id")
     the_speaker = Speaker.where({ :id => the_id }).at(0)
 
-    the_speaker.image = params.fetch("query_image")
     the_speaker.bio = params.fetch("query_bio")
     the_speaker.first_name = params.fetch("query_first_name")
     the_speaker.last_name = params.fetch("query_last_name")
-    the_speaker.event_id = params.fetch("query_event_id")
     the_speaker.department_id = params.fetch("query_department_id")
 
     if the_speaker.valid?

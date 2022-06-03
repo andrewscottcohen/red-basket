@@ -44,8 +44,8 @@ class UserAuthenticationController < ApplicationController
     @user.first_name = params.fetch("query_first_name")
     @user.last_name = params.fetch("query_last_name")
     @user.department_id = params.fetch("query_department_id")
-    @user.image = params.fetch("query_image")
-    @user.bio = params.fetch("query_bio")
+
+
 
     save_status = @user.save
 
@@ -70,8 +70,7 @@ class UserAuthenticationController < ApplicationController
     @user.first_name = params.fetch("query_first_name")
     @user.last_name = params.fetch("query_last_name")
     @user.department_id = params.fetch("query_department_id")
-    @user.image = params.fetch("query_image")
-    @user.bio = params.fetch("query_bio")
+
     
     if @user.valid?
       @user.save

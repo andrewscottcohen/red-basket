@@ -97,12 +97,17 @@
         <textarea id="bio_box" name="query_bio"><%= @the_speaker.bio %></textarea>
       </div>
 
-      <div>
+      <div class="form-group">
         <label for="department_id_box">
-          Department
+            <strong>Department</strong>
         </label>
-
-        <input type="text" id="department_id_box" name="query_department_id" value="<%= @the_speaker.department.title %>">
+        <select name="query_department_id" class="form-control form-control-sm">
+          <% Department.all.order(:title).each do |a_dept| %>
+          <option value="<%= a_dept.id %>">
+            <%= a_dept.title %>
+          </option>
+          <% end %>
+        </select>
       </div>
 
       <button>
